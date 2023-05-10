@@ -13,13 +13,13 @@ public class Main {
         final ServerSocket server = new ServerSocket(80);
         System.out.println("Listening for connection on port 80 .....");
         while(true) {
-            try(Socket socket = server.accept()){
+            try{
+                Socket socket = server.accept();
                 ConnectionThread connection = new ConnectionThread(socket);
                 connection.start();
-//                Date today = new Date();
-//                String httpResponse = "HTTP/1.1 200 OK \r\n\r\n" + today;
-//                socket.getOutputStream()
-//                        .write(httpResponse.getBytes("UTF-8"));
+            }
+            catch (IOException e) {
+                throw e;
             }
         }
     }
